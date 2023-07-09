@@ -11,6 +11,19 @@
     "https"
   ],
   "paths": {
+    "/api-docs": {
+      "get": {
+        "tags": [
+          "API documentation"
+        ],
+        "description": "this is api documentation",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/users/": {
       "get": {
         "tags": [
