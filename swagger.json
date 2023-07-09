@@ -42,22 +42,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
+                "user_id": {
                   "example": "any"
                 },
-                "fullName": {
+                "name": {
                   "example": "any"
                 },
                 "email": {
                   "example": "any"
                 },
-                "password": {
+                "age": {
                   "example": "any"
                 },
-                "biography": {
-                  "example": "any"
-                },
-                "socialNetworks": {
+                "location": {
                   "example": "any"
                 }
               }
