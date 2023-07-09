@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Description",
+    "title": "PoemPix API",
+    "description": "This is our testing place for endpoints",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
@@ -11,19 +11,12 @@
     "http"
   ],
   "paths": {
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/users/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Users Collection"
+        ],
+        "description": "Get all Users",
         "produces": [
           "application/json"
         ],
@@ -34,7 +27,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Create new"
+        ],
+        "description": "Create a new user",
         "parameters": [
           {
             "name": "body",
@@ -73,7 +69,10 @@
     },
     "/users/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "User and Poems"
+        ],
+        "description": "Find User and Poems",
         "parameters": [
           {
             "name": "id",
@@ -95,7 +94,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Update"
+        ],
+        "description": "Update Users",
         "parameters": [
           {
             "name": "id",
@@ -141,7 +143,472 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Delete"
+        ],
+        "description": "Delete Users",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/poems/": {
+      "get": {
+        "tags": [
+          "Poems Collection"
+        ],
+        "description": "Get all poems",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Create new"
+        ],
+        "description": "Create a new poem",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/poem/{id}": {
+      "get": {
+        "tags": [
+          "User and Poems"
+        ],
+        "description": "Find User and Poems",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Update"
+        ],
+        "description": "Update poems",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "fullName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "biography": {
+                  "example": "any"
+                },
+                "socialNetworks": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Delete"
+        ],
+        "description": "Delete poem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ratings/": {
+      "get": {
+        "tags": [
+          "Ratings Collection"
+        ],
+        "description": "Get all ratings",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Create new"
+        ],
+        "description": "Create a new reating",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ratings/{id}": {
+      "get": {
+        "tags": [
+          "Ratings and favorites"
+        ],
+        "description": "Find favorites and rating",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Update"
+        ],
+        "description": "Update ratings",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "fullName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "biography": {
+                  "example": "any"
+                },
+                "socialNetworks": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Delete"
+        ],
+        "description": "Delete rating",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/favorites/": {
+      "get": {
+        "tags": [
+          "Favorites Collection"
+        ],
+        "description": "Get all favorites",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Create new"
+        ],
+        "description": "Create a new favorite",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/favorites/{id}": {
+      "get": {
+        "tags": [
+          "Ratings and favorites"
+        ],
+        "description": "ratings and favorites",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Update"
+        ],
+        "description": "Update favorites",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "fullName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "biography": {
+                  "example": "any"
+                },
+                "socialNetworks": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Delete"
+        ],
+        "description": "Delete favorite",
         "parameters": [
           {
             "name": "id",
