@@ -11,7 +11,7 @@ const getAllUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   const userId = new ObjectId(req.params.id);
-  
+
   try {
     const user = await mongodb.getDb().db().collection('users').findOne({ _id: userId });
     if (!user) {
@@ -19,23 +19,21 @@ const getSingleUser = async (req, res) => {
       return;
     }
 
-    const authorName = user.fullName;
+    const authorName = user.name;
     const poems = await mongodb
       .getDb()
       .db()
       .collection('poems')
-      .find({ author: authorName })
+      .find({ author_id: user.user_id })
       .toArray();
 
     const userData = {
-      _id: user._id,
-      username: user.username,
-      fullName: user.fullName,
+      user_id: user.user_id,
+      name: user.name,
       email: user.email,
-      password: user.password,
-      biography: user.biography,
-      socialNetworks: user.socialNetworks,
-      poems: poems,
+      age: user.age,
+      location: user.location,
+      content: poems
     };
 
     res.status(200).json(userData);
@@ -46,13 +44,13 @@ const getSingleUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   const user = {
-    username: req.body.username,
-    fullName: req.body.fullName,
+    user_id: req.body.user_id,
+    name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
-    biography: req.body.biography,
-    socialNetworks: req.body.socialNetworks
+    age: req.body.age,
+    location: req.body.location
   };
+
   const response = await mongodb.getDb().db().collection('users').insertOne(user);
   if (response.acknowledged) {
     res.status(201).json(response);
@@ -64,12 +62,11 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const user = {
-    username: req.body.username,
-    fullName: req.body.fullName,
+    user_id: req.body.user_id,
+    name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
-    biography: req.body.biography,
-    socialNetworks: req.body.socialNetworks
+    age: req.body.age,
+    location: req.body.location
   };
   const response = await mongodb
     .getDb()
@@ -84,7 +81,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-const deleteUser= async (req, res) => {
+const deleteUser = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('users').remove({ _id: userId }, true);
   console.log(response);
