@@ -110,7 +110,7 @@
         "tags": [
           "Update"
         ],
-        "description": "Update Users",
+        "description": "Update Users favorites",
         "parameters": [
           {
             "name": "id",
