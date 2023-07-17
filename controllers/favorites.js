@@ -10,20 +10,35 @@ const getAllFavoritePoems = async (req, res) => {
   });
 };
 
-//Get the favorite poem for the user.
+// Get the favorite poem for the user.
 const getFavoritePoem = async (req, res) => {
   const poemId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('favorite').find({ _id: poemId });
-  result.toArray().then((favorite) => {
+  const result = await mongodb.getDb().db().collection('favorites').find({ _id: poemId });
+  result.toArray().then((favorites) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(favorite[0]);
+    res.status(200).json(favorites[0]);
   });
+};
+
+// Add a favorite poem for the user.
+const addFavoritePoem = async (req, res) => {
+  const poem = {
+    poem_id: req.body.poem_id,
+    date_added: req.body.date_added
+  };
+
+  const response = await mongodb.getDb().db().collection('poems').insertOne(poem);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res.status(500).json(response.error || 'Some error occurred while creating the poem.');
+  }
 };
 
 //Remove the user favorite poem.
 const deleteFavorite = async (req, res) => {
   const poemId = new ObjectId(req.params.id);
-  const response = await mongodb.getDb().db().collection('favorite').remove({ _id: poemId }, true);
+  const response = await mongodb.getDb().db().collection('favorites').remove({ _id: poemId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(204).send();
@@ -32,14 +47,14 @@ const deleteFavorite = async (req, res) => {
   }
 };
 
-//Update the favorite poem for the authenticated user.
+// Update the favorite poem for the authenticated user.
 const updateFavorite = async (req, res) => {
   const poemId = new ObjectId(req.params.id);
   const poem = {
     poem_id: req.body.poem_id,
     date_added: req.body.date_added
   };
-  const response = await mongodb.getDb().db().collection('favorite').replaceOne({ _id: poemId }, poem);
+  const response = await mongodb.getDb().db().collection('favorites').replaceOne({ _id: poemId }, poem);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
@@ -51,6 +66,7 @@ const updateFavorite = async (req, res) => {
 module.exports = {
   getAllFavoritePoems,
   getFavoritePoem,
+  addFavoritePoem,
   deleteFavorite,
   updateFavorite
 };

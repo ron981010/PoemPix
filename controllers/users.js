@@ -11,7 +11,7 @@ const getAllUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   const userId = new ObjectId(req.params.id);
-
+  
   try {
     const user = await mongodb.getDb().db().collection('users').findOne({ _id: userId });
     if (!user) {
@@ -81,7 +81,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
+const deleteUser= async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('users').remove({ _id: userId }, true);
   console.log(response);

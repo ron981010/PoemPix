@@ -8,6 +8,9 @@ router.get('/', favoriteController.getAllFavoritePoems);
 // GET a user favorite poem
 router.get('/:id', favoriteController.getFavoritePoem);
 
+// PUT a user favorite poem
+router.post('/', favoriteController.addFavoritePoem);
+
 // UPDATE favorite poem
 router.put('/:id', favoriteController.updateFavorite);
 
