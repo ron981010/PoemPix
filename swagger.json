@@ -5,7 +5,7 @@
     "description": "This is our testing place for endpoints",
     "version": "1.0.0"
   },
-  "host": "poempix-app.onrender",
+  "host": "poempix-app.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
