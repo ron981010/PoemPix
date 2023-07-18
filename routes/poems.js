@@ -11,21 +11,21 @@ router.get('/', poemsController.getAllPoems);
 // GET a single poem
 router.get('/:id', poemsController.getPoemById);
 
-// POST a new poem
+// POST a new poem with validation middleware
 router.post(
   '/',
   requiresAuth(),
   isAuthenticated,
-  validation.savePoems,
+  validation.validateCreatePoem, // Add validation middleware for creating a new poem
   poemsController.createPoem
 );
 
-// PUT update data in an existing poem
+// PUT update data in an existing poem with validation middleware
 router.put(
   '/:id',
   requiresAuth(),
   isAuthenticated,
-  validation.savePoems,
+  validation.validateUpdatePoem, // Add validation middleware for updating a poem
   poemsController.updatePoem
 );
 
@@ -38,4 +38,3 @@ router.delete(
 );
 
 module.exports = router;
-
