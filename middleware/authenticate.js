@@ -1,41 +1,21 @@
 const express = require('express');
-const auth = require('express-openid-connect');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
 
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: process.env.SECRET,
-  baseURL: process.env.BASE_RENDER_URL,
-  clientID: process.env.CLIENT_ID,
-  issuerBaseURL: process.env.ISSUER_BASE_URL
-};
+// Your MongoDB URI
+const MONGODB_URI = process.env.MONGODB_URI;
 
-// Initialize the authentication middleware
-app.use(auth(config));
+// Your GitHub authentication credentials
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+const CALLBACK_URL = process.env.CALLBACK_URL;
 
-// Custom middleware to check if the user is authenticated
-const isAuthenticated = (req, res, next) => {
-  if (req.oidc.isAuthenticated()) {
-    return next();
-  } else {
-    return res.status(401).json({ error: 'User not authenticated' });
-  }
-};
+// Middleware to parse JSON data
+app.use(express.json());
 
-// Routes
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
-
-app.get('/test', isAuthenticated, (req, res) => {
-  res.send(JSON.stringify('Hello World'));
-});
-
-// Your other routes and middleware can be defined here...
+// Your MongoDB and other routes and middleware can be defined here...
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
