@@ -1,5 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+const db = require('../models');
+const poem = db.poem;
 
 // get all poems from database
 const getAllPoems = async (req, res,) => {
@@ -25,7 +27,7 @@ const getPoemById = async (req, res) => {
     const poemId = new ObjectId(req.params.id);
     const result = await mongodb
       .getDb().db('').collection('poems')
-      .find({ _id: poemId,Id });
+      .find({ _id: poemId });
     result.toArray().then((poems) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(poems[0]);

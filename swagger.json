@@ -5,7 +5,7 @@
     "description": "This is our testing place for endpoints",
     "version": "1.0.0"
   },
-  "host": "poempix-app.onrender.com",
+  "host": "poempix-app.onrender",
   "basePath": "/",
   "schemes": [
     "https"
@@ -216,12 +216,10 @@
                 },
                 "author": {
                   "example": "any"
-                }
-                ,
+                },
                 "date_created": {
                   "example": "any"
-                }
-                ,
+                },
                 "tags": {
                   "example": "any"
                 }
@@ -297,12 +295,10 @@
                 },
                 "author": {
                   "example": "any"
-                }
-                ,
+                },
                 "date_created": {
                   "example": "any"
-                }
-                ,
+                },
                 "tags": {
                   "example": "any"
                 }
@@ -354,46 +350,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Create new"
-        ],
-        "description": "Create a new rating",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "rating_id": {
-                  "example": "any"
-                },
-                "user_id": {
-                  "example": "any"
-                },
-                "poem_id": {
-                  "example": "any"
-                },
-                "rating_value": {
-                  "example": "any"
-                },
-                "timestamp": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }

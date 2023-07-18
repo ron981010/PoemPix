@@ -1,20 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const favoriteController = require('../controllers/favorites');
 
-//GET all favorite poems
-router.get('/', favoriteController.getAllFavoritePoems);
+const { isAuthenticated } = require("../middleware/authenticate");
 
-// GET a user favorite poem
-router.get('/:id', favoriteController.getFavoritePoem);
+const favoritesController = require('../controllers/favorites');
 
-// PUT a user favorite poem
-router.post('/', favoriteController.addFavoritePoem);
-
-// UPDATE favorite poem
-router.put('/:id', favoriteController.updateFavorite);
-
-// DELETE favorite poem
-router.delete('/:id', favoriteController.deleteFavorite);
+router.get('/', favoritesController.getAllFavoritePoems);
+router.get('/:id', favoritesController.getFavoritePoem);
+router.post('/', isAuthenticated, favoritesController.addFavoritePoem);
+router.put('/:id', isAuthenticated, favoritesController.updateFavorite);
+router.delete('/:id', isAuthenticated, favoritesController.deleteFavorite);
 
 module.exports = router;

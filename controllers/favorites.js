@@ -1,5 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+const db = require('../models');
+const favorite = db.favorite;
 
 //Get the list of all favorite poems for the users.
 const getAllFavoritePoems = async (req, res) => {
@@ -27,7 +29,7 @@ const addFavoritePoem = async (req, res) => {
     date_added: req.body.date_added
   };
 
-  const response = await mongodb.getDb().db().collection('poems').insertOne(poem);
+  const response = await mongodb.getDb().db().collection('favorites').insertOne(poem);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {

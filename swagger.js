@@ -5,7 +5,7 @@ const doc = {
     title: 'My API',
     description: 'Description',
   },
-  host: 'poempix-app.onrender.com',
+  host: 'poempix-app.onrender',
   schemes: ['https'],
 };
 
