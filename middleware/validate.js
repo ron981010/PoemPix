@@ -1,5 +1,3 @@
-// middleware/validate.js
-
 const Joi = require('joi');
 
 // Validation schema for creating a new poem
