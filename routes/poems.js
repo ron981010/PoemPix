@@ -6,18 +6,18 @@ const { requiresAuth } = require('express-openid-connect');
 const { isAuthenticated } = require('../middleware/authenticate');
 
 // GET all poems
-router.get('/', poemsController.getAllpoems);
+router.get('/', poemsController.getAllPoems);
 
 // GET a single poem
-router.get('/:id', poemsController.getpoemById);
+router.get('/:id', poemsController.getPoemById);
 
 // POST a new poem
 router.post(
   '/',
   requiresAuth(),
   isAuthenticated,
-  validation.savepoems,
-  poemsController.createpoem
+  validation.savePoems,
+  poemsController.createPoem
 );
 
 // PUT update data in an existing poem
@@ -25,8 +25,8 @@ router.put(
   '/:id',
   requiresAuth(),
   isAuthenticated,
-  validation.savepoems,
-  poemsController.updatepoem
+  validation.savePoems,
+  poemsController.updatePoem
 );
 
 // DELETE a poem
@@ -34,8 +34,8 @@ router.delete(
   '/:id',
   requiresAuth(),
   isAuthenticated,
-  poemsController.deletepoem
+  poemsController.deletePoem
 );
 
-
 module.exports = router;
+

@@ -110,7 +110,7 @@
         "tags": [
           "Update"
         ],
-        "description": "Update Users",
+        "description": "Update Users favorites",
         "parameters": [
           {
             "name": "id",
@@ -124,22 +124,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
+                "user_id": {
                   "example": "any"
                 },
-                "fullName": {
+                "name": {
                   "example": "any"
                 },
                 "email": {
                   "example": "any"
                 },
-                "password": {
+                "age": {
                   "example": "any"
                 },
-                "biography": {
-                  "example": "any"
-                },
-                "socialNetworks": {
+                "location": {
                   "example": "any"
                 }
               }
@@ -205,19 +202,27 @@
             "schema": {
               "type": "object",
               "properties": {
-                "user_id": {
+                "poem_id": {
                   "example": "any"
                 },
-                "name": {
+                "title": {
                   "example": "any"
                 },
-                "email": {
+                "content": {
                   "example": "any"
                 },
-                "age": {
+                "author_id": {
                   "example": "any"
                 },
-                "location": {
+                "author": {
+                  "example": "any"
+                }
+                ,
+                "date_created": {
+                  "example": "any"
+                }
+                ,
+                "tags": {
                   "example": "any"
                 }
               }
@@ -278,22 +283,27 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
+                "poem_id": {
                   "example": "any"
                 },
-                "fullName": {
+                "title": {
                   "example": "any"
                 },
-                "email": {
+                "content": {
                   "example": "any"
                 },
-                "password": {
+                "author_id": {
                   "example": "any"
                 },
-                "biography": {
+                "author": {
                   "example": "any"
-                },
-                "socialNetworks": {
+                }
+                ,
+                "date_created": {
+                  "example": "any"
+                }
+                ,
+                "tags": {
                   "example": "any"
                 }
               }
@@ -351,7 +361,7 @@
         "tags": [
           "Create new"
         ],
-        "description": "Create a new reating",
+        "description": "Create a new rating",
         "parameters": [
           {
             "name": "body",
@@ -359,19 +369,19 @@
             "schema": {
               "type": "object",
               "properties": {
+                "rating_id": {
+                  "example": "any"
+                },
                 "user_id": {
                   "example": "any"
                 },
-                "name": {
+                "poem_id": {
                   "example": "any"
                 },
-                "email": {
+                "rating_value": {
                   "example": "any"
                 },
-                "age": {
-                  "example": "any"
-                },
-                "location": {
+                "timestamp": {
                   "example": "any"
                 }
               }
@@ -432,22 +442,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
+                "rating_id": {
                   "example": "any"
                 },
-                "fullName": {
+                "user_id": {
                   "example": "any"
                 },
-                "email": {
+                "poem_id": {
                   "example": "any"
                 },
-                "password": {
+                "rating_value": {
                   "example": "any"
                 },
-                "biography": {
-                  "example": "any"
-                },
-                "socialNetworks": {
+                "timestamp": {
                   "example": "any"
                 }
               }
@@ -513,19 +520,16 @@
             "schema": {
               "type": "object",
               "properties": {
+                "favorite_id": {
+                  "example": "any"
+                },
                 "user_id": {
                   "example": "any"
                 },
-                "name": {
+                "poem_id": {
                   "example": "any"
                 },
-                "email": {
-                  "example": "any"
-                },
-                "age": {
-                  "example": "any"
-                },
-                "location": {
+                "date_added": {
                   "example": "any"
                 }
               }
@@ -586,22 +590,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
+                "favorite_id": {
                   "example": "any"
                 },
-                "fullName": {
+                "user_id": {
                   "example": "any"
                 },
-                "email": {
+                "poem_id": {
                   "example": "any"
                 },
-                "password": {
-                  "example": "any"
-                },
-                "biography": {
-                  "example": "any"
-                },
-                "socialNetworks": {
+                "date_added": {
                   "example": "any"
                 }
               }

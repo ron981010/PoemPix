@@ -2,12 +2,10 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 // get all poems from database
-const getAllpoems = async (req, res) => {
+const getAllPoems = async (req, res,) => {
   try {
     const result = await mongodb
-      .getDb()
-    //   .db('insert the mongodb main folder name in the database')
-    //   .collection('name of the poem folder in the main folder in the database')
+      .getDb().db('').collection('poems')
       .find();
     result.toArray().then((poems) => {
       res.setHeader('Content-Type', 'application/json');
@@ -19,16 +17,14 @@ const getAllpoems = async (req, res) => {
 };
 
 // get a single poem from database
-const getpoemById = async (req, res) => {
+const getPoemById = async (req, res) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json('Must use a valid poem id to find a poem.');
     }
     const poemId = new ObjectId(req.params.id);
     const result = await mongodb
-      .getDb()
-    //   .db('insert the mongodb main folder name in the database')
-    //   .collection('name of the poem folder in the main folder in the database')
+      .getDb().db('').collection('poems')
       .find({ _id: poemId,Id });
     result.toArray().then((poems) => {
       res.setHeader('Content-Type', 'application/json');
@@ -40,16 +36,20 @@ const getpoemById = async (req, res) => {
 };
 
 // create new poem
-const createpoem = async (req, res) => {
+const createPoem = async (req, res) => {
   try {
     const poem = {
-    //   insert their values and content of the poem
+      poem_id: req.body.poem_id,
+      title: req.body.title,
+      content: req.body.content,
+      author_id: req.body.author_id, 
+      author: req.body.author, 
+      date_created: req.body.date_created, 
+      tags: req.body.tags 
     };
 
     const response = await mongodb
-      .getDb()
-    //   .db('insert the mongodb main folder name in the database')
-    //   .collection('name of the poem folder in the main folder in the database')
+      .getDb().db('').collection('poems')
       .insertOne(car);
     if (response.acknowledged) {
       console.log('Created successfully');
@@ -67,19 +67,23 @@ const createpoem = async (req, res) => {
 };
 
 // update poem by id in the database
-const updatepoem = async (req, res) => {
+const updatePoem = async (req, res) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json('Must use a valid poem id to update a poem.');
     }
     const poemId = new ObjectId(req.params.id);
     const poem = {
-     //   insert their values and content of the poem
+      poem_id: req.body.poem_id,
+      title: req.body.title,
+      content: req.body.content,
+      author_id: req.body.author_id, 
+      author: req.body.author, 
+      date_created: req.body.date_created, 
+      tags: req.body.tags 
     };
     const response = await mongodb
-      .getDb()
-    //   .db('insert the mongodb main folder name in the database')
-    //   .collection('name of the poem folder in the main folder in the database')
+      .getDb().db('').collection('poems')
       .replaceOne({ _id: poemId }, poem);
     console.log(response);
     if (response.modifiedCount === 1) {
@@ -98,16 +102,14 @@ const updatepoem = async (req, res) => {
 };
 
 // delete poem by id in the database
-const deletepoem = async (req, res) => {
+const deletePoem = async (req, res) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json('Must use a valid poem id to delete a poem.');
     }
     const poemId = new ObjectId(req.params.id);
     const response = await mongodb
-      .getDb()
-    //   .db('insert the mongodb main folder name in the database')
-    //   .collection('name of the poem folder in the main folder in the database')
+      .getDb().db('').collection('poems')
       .deleteOne({ _id: poemId });
     if (response.deletedCount === 1) {
       console.log('Deleted successfully');
@@ -125,9 +127,11 @@ const deletepoem = async (req, res) => {
 };
 
 module.exports = {
-  getAllpoems,
-  getpoemById,
-  createpoem,
-  updatepoem,
-  deletepoem
+  getAllPoems,
+  getPoemById,
+  createPoem,
+  updatePoem,
+  deletePoem
 };
+
+
