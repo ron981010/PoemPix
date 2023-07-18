@@ -50,7 +50,7 @@ const createPoem = async (req, res) => {
 
     const response = await mongodb
       .getDb().db('').collection('poems')
-      .insertOne(car);
+      .insertOne(poem);
     if (response.acknowledged) {
       console.log('Created successfully');
       res.setHeader('Content-Type', 'application/json');
