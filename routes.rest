@@ -125,7 +125,7 @@ content-type: application/json
 }
 
 ### DELETE poem
-DELETE http://localhost:8080/poems/64a9f953be85f3f856e49a07 HTTP/1.1
+DELETE https://poempix-app.onrender.com/poems/64b6db898246700c7c35d3db HTTP/1.1
 
 
 // FAVORITES

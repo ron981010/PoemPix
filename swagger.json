@@ -237,7 +237,7 @@
         }
       }
     },
-    "/poem/{id}": {
+    "/poems/{id}": {
       "get": {
         "tags": [
           "User and Poems"
