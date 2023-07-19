@@ -25,6 +25,8 @@ const getFavoritePoem = async (req, res) => {
 // Add a favorite poem for the user.
 const addFavoritePoem = async (req, res) => {
   const poem = {
+    favorite_id: req.body.favorite_id,
+    user_id: req.body.user_id,
     poem_id: req.body.poem_id,
     date_added: req.body.date_added
   };
@@ -53,6 +55,8 @@ const deleteFavorite = async (req, res) => {
 const updateFavorite = async (req, res) => {
   const poemId = new ObjectId(req.params.id);
   const poem = {
+    favorite_id: req.body.favorite_id,
+    user_id: req.body.user_id,
     poem_id: req.body.poem_id,
     date_added: req.body.date_added
   };
