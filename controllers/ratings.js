@@ -38,8 +38,11 @@ const deleteRating = async (req, res) => {
 const updateRating = async (req, res) => {
   const poemId = new ObjectId(req.params.id);
   const poem = {
+    rating_id: req.body.rating_id, 
+    user_id: req.body.user_id,
     poem_id: req.body.poem_id, 
-    rating_value: req.body.rating_value
+    rating_value: req.body.rating_value,
+    timestamp: req.body.timestamp
   };
   const response = await mongodb.getDb().db().collection('ratings').replaceOne({ _id: poemId }, poem);
   console.log(response);
